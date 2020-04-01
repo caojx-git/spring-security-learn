@@ -1,0 +1,68 @@
+server:
+  port: 80
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/learn_test?useUnicode=true&characterEncoding=utf8&useSSL=true
+    username: root
+    password: 12345678
+#  security: #不配置的话，默认会在控制台输出密码，默认用户是user
+#    user:
+#      name: jack
+#      password: 123
+
+  redis:
+    host: 127.0.0.1 # Redis服务器地址
+    port: 6379 # Redis服务器连接端口
+    password:  # Redis服务器连接端口
+    database: 0 # Redis数据库索引（默认为0）
+  session:
+    store-type: redis
+    timeout: 600
+
+imooc:
+  security:
+    browser:
+      loginPage: /demo-signIn.html
+      signInResponseType: JSON  #配置登录成功或失败时，采用重定向的方式或者响应JSON
+      signUpUrl: /demo-signUp.html #注册页配置
+      session:
+        sessionInvalidUrl: /session/invalid.html #session失效跳转地址
+      signOutUrl: /demo-logout.html #退出登录成功跳转地址
+    code:
+      image:
+        length: 4
+        width: 100
+#        url: /user,/user/* #这些url需要做图形验证码校验
+
+    social:
+      filterProcessesUrl: /qqLogin # 相当于 http://www.caojx.site/qqLogin/callback.do 中的  qqLogin
+      qq:
+        providerId: callback.do # 相当于 http://www.caojx.site/qqLogin/callback.do 中的  callback.do
+        app-id:
+        app-secret:
+      weixin:
+        providerId: weixin #http://www.pinzhi365.com/qqLogin/weixin 中的weixin
+        app-id: wxd99431bbff8305a0
+        app-secret: 60f78681d063590a469f1b297feff3c4
+
+    #自定义认证服务器注册的第三方应用配置项，参见OAuth2ClientProperties
+    oauth2:
+      clients[0]:
+        clientId: imooc
+        clientSecret: imooc-secret
+        accessTokenValidateSeconds: 3600   #超时时间
+      clients[1]:
+        clientId: test
+        clientSecret: test
+
+#  默认的oauth2 安全配置
+#security:
+#  oauth2:
+#    client:
+#      client-id: imooc # 如果不配置 client_id 和 client_secret 每次启动都会自动变化
+#      client-secret: imooc-secret
+#      registered-redirect-uri: http://example.com #不配置这个地址，会报这个错，"error="invalid_request", error_description="A redirect_uri must be supplied."

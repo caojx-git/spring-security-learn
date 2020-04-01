@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>登录</title>
+</head>
+<body>
+	<h2>Demo注册页</h2>
+
+	<!--
+		主要，处理这个注册逻辑的服务应该是demo自己写的，这个安全模块不用去管它，应该每个应用的注册逻辑都是不一样的
+
+因为我们是在第三方登录的过程中因为第一次用第三方用户来登录，那么引发的这个跳转到注册页上，这时候有两种可能
+一种是这个用户在我的系统里是一个全新的用户，他以前也没有用用户名密码登录过，那么这时候可以注册一个全新的用户，另外一种可能是这个用户以前他有自己的用户名密码，那么这时候它要做的就是把当前的这个社交用户（QQ用户），把他绑到一个他已有的一个账户上去，所以这里有两个动作，注册和绑定。
+
+	-->
+	<form action="/user/regist" method="post">
+		<table>
+			<tr>
+				<td>用户名:</td> 
+				<td><input type="text" name="username"></td>
+			</tr>
+			<tr>
+				<td>密码:</td>
+				<td><input type="password" name="password"></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<button type="submit" name="type" value="regist">注册</button>
+					<button type="submit" name="type" value="binding">绑定</button>
+				</td>
+			</tr>
+		</table>
+	</form>
+</body>
+</html>

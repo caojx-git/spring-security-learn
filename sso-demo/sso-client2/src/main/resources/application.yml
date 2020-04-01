@@ -1,0 +1,21 @@
+server:
+  port: 8060
+  servlet:
+    context-path: /client2
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
+#  oauth2 安全配置
+security:
+  oauth2:
+    client:
+      client-id: imooc2 #clientId
+      client-secret: imooc-secret2 #clientSecret
+      user-authorization-uri: http://127.0.0.1:9999/oauth/authorize #跳转到认证服务器获取授权的服务器的地址
+      access-token-uri: http://127.0.0.1:9999/oauth/token #跳转到认证服务器获取token的地址
+    resource:
+      jwt:
+        key-uri: http://127.0.0.1:9999/oauth/token_key # 获取到jwt token后去解析token，获取认证服务器jwt token秘钥的uri，之后对其进行验证
+        key-value: imooc # 认证服务器jwt 签名秘钥

@@ -1,0 +1,9 @@
+server:
+  port: 9999
+
+# 客户端应用跳转到认证服务器上进行认证登录的时候需要输入该密码，配置一个默认的用户
+spring:
+  security:
+    user: # 不配置的话，默认会在控制台输出密码，默认用户是user
+      password: 123456
+      name: user
